@@ -20,11 +20,11 @@ https://github.com/jonataswalker/ol-contextmenu
 https://www.npmjs.com/package/vite-plugin-favicons-inject
 
 # Todo
-robot.txt
+- robot.txt
+- build-skripte in package.json 
+- Daten aus Ansible
 
-build-skripte in package.json 
-
-Wie kommt die fertige Website im Verzeichnis `/src/dist/` in Dokumentroot des Webservers? Eine Möglichkeit:
+- Wie kommt die fertige Website im Verzeichnis `/src/dist/` in Dokumentroot des Webservers? Eine Möglichkeit:
 
 ```
 checkout_dir="${HOME}/html/xxx"
