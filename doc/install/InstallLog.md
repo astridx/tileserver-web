@@ -5,10 +5,6 @@ Demo https://astridx.github.io/tileserver-web/
 ## Vite mit Bootstrap 5 aufgesetzt
 https://getbootstrap.com/docs/5.2/getting-started/vite/
 
-## HTML Struktur 
-- Test eines Modal, dass für das Kontextmenü verwendet werden kann.
-- Eine CSS Komponente
-
 ## OpenLayers mit Swipe Module
 - https://github.com/openlayers/ol-vite in angepasster Form
 - https://openlayers.org/en/latest/examples/layer-swipe.html anstelle des Layer Controls
