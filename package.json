@@ -1,0 +1,28 @@
+{
+  "name": "openstreetmap_tileserver_webpage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "build-local": "vite build --base=/astridx.github.io/tileserver-web/",
+    "build-astridx": "vite build --base=/tileserver-web/",
+    "serve": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.59.3",
+    "vite": "^4.2.1"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.3",
+    "ol": "7.3.0",
+    "ol-contextmenu": "^5.2.0",
+    "vite-plugin-favicons-inject": "^2.2.0"
+  }
+}
