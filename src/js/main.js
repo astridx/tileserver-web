@@ -10,14 +10,19 @@ import { getRenderPixel } from 'ol/render';
 import ContextMenu from 'ol-contextmenu';
 import imgUrl from '../images/osm_logo.png'
 
+const HOSTNAME = import.meta.env.HOSTNAME || 'meinHost';
+const OSML10N_VERSION = import.meta.env.OSML10N_VERSION || 5.0;
+const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.OPENSTREETMAP_CARTO_DE_VERSION || 1.0;
+
+document.getElementById('main-carto').innerHTML = OSML10N_VERSION;
+document.getElementById('main-local').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+
 const baseUrl = import.meta.env.BASE_URL;
 let navList = document.getElementById('nav-list');
 
 const serverFolderList = [
-    { server: 'gauss', folder: '' },
-    { server: 'gauss', folder: 'osmhrb' },
-    { server: 'humboldt', folder: '' },
-    { server: 'humboldt', folder: 'osmhrb' },
+    { server: HOSTNAME, folder: '' },
+    { server: HOSTNAME, folder: 'osmhrb' },
     { server: 'tile', folder: '' },
     { server: 'tile', folder: 'osmhrb' },
 ];
@@ -27,7 +32,11 @@ serverFolderList.map(
         let listelement = document.createElement("li");
         let linkelement = document.createElement("a");
         linkelement.href = baseUrl + 'index.html?server=' + server + '&folder=' + folder;
-        linkelement.innerHTML = 'Subdomain: ' + server + ' Unterverzeichnis: ' + folder;
+        if (folder == '') {
+            linkelement.innerHTML = 'Subdomain: ' + server;
+        }else {
+            linkelement.innerHTML = 'Subdomain: ' + server + ' Unterverzeichnis: ' + folder;            
+        }
         listelement.appendChild(linkelement);
         navList.appendChild(listelement);
     }
