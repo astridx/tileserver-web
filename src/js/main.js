@@ -10,9 +10,9 @@ import { getRenderPixel } from 'ol/render';
 import ContextMenu from 'ol-contextmenu';
 import imgUrl from '../images/osm_logo.png'
 
-const HOSTNAME = import.meta.env.HOSTNAME || 'meinHost';
-const OSML10N_VERSION = import.meta.env.OSML10N_VERSION || 5.0;
-const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.OPENSTREETMAP_CARTO_DE_VERSION || 1.0;
+const HOSTNAME = import.meta.env.VITE_HOSTNAME || 'dummy';
+const OSML10N_VERSION = import.meta.env.VITE_OSML10N_VERSION || '1.0';
+const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_DE_VERSION || '1.0';
 
 document.getElementById('main-carto').innerHTML = OSML10N_VERSION;
 document.getElementById('main-local').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
