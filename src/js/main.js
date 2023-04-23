@@ -16,13 +16,12 @@ const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_
 
 document.getElementById('main-carto').innerHTML = OSML10N_VERSION;
 document.getElementById('main-local').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+document.getElementById('hostname').innerHTML = 'Server: ' + HOSTNAME;
 
 const baseUrl = import.meta.env.BASE_URL;
 let navList = document.getElementById('nav-list');
 
 const serverFolderList = [
-    { server: HOSTNAME, folder: '' },
-    { server: HOSTNAME, folder: 'osmhrb' },
     { server: 'tile', folder: '' },
     { server: 'tile', folder: 'osmhrb' },
 ];
@@ -35,7 +34,7 @@ serverFolderList.map(
         if (folder == '') {
             linkelement.innerHTML = 'Subdomain: ' + server;
         }else {
-            linkelement.innerHTML = 'Subdomain: ' + server + ' Unterverzeichnis: ' + folder;            
+            linkelement.innerHTML = 'Subdomain: ' + server + '</br> Unterverzeichnis: ' + folder;            
         }
         listelement.appendChild(linkelement);
         navList.appendChild(listelement);
