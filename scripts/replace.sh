@@ -17,6 +17,6 @@ l10n_VERSION=$(git -C /srv/tile/sources/osml10n describe --tags)
 
 cd /srv/tile/site/assets
 
-sed -i '.bak' 's/VITE_HOSTNAME/$HOSTNAME/g' *
-sed -i '.bak' 's/VITE_OSML10N_VERSION/$CARTO_VERSION/g' *
-sed -i '.bak' 's/VITE_OPENSTREETMAP_CARTO_DE_VERSION/$l10n_VERSION/g' *
+sed -i 's/VITE_HOSTNAME/$HOSTNAME/g' *
+sed -i 's/VITE_OSML10N_VERSION/$CARTO_VERSION/g' *
+sed -i 's/VITE_OPENSTREETMAP_CARTO_DE_VERSION/$l10n_VERSION/g' *
