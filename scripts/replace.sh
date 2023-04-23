@@ -14,7 +14,7 @@ git config --global --add safe.directory /srv/tile/sources/osml10n
 
 CARTO_VERSION=$(git -C /srv/tile/openstreetmap-carto-de/ describe --tags)
 l10n_VERSION=$(git -C /srv/tile/sources/osml10n describe --tags)
-HOSTNAME=$HOSTNAME
+HOSTNAME=printenv HOSTNAME
 
 cd /srv/tile/site/assets
 
