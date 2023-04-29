@@ -17,5 +17,8 @@ export default {
   },
   plugins: [
     process.env.NODE_ENV == "production" ? vitePluginFaviconsInject(path.resolve(__dirname, 'src/images/favicon.svg')) : false,
-  ]
+  ],
+  build: {
+    minify: false,
+  }
 }
