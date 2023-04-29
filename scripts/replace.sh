@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 #
-# Make sure that the correct 
+# Makes sure that the correct 
 # - hostname 
 # and the current versions of 
 # - carto and 
@@ -17,6 +17,11 @@ l10n_VERSION=$(git -C /srv/tile/sources/osml10n describe --tags)
 
 cd /srv/tile/site/assets
 
+if [ $HOSTNAME == 'vagrant' ]
+then
+sudo sed -i "s/VITE_HOSTNAME/localhost/g" *
+else
 sudo sed -i "s/VITE_HOSTNAME/${HOSTNAME}/g" *
+fi
 sudo sed -i "s/VITE_OSML10N_VERSION/${l10n_VERSION}/g" *
 sudo sed -i "s/VITE_OPENSTREETMAP_CARTO_DE_VERSION/${CARTO_VERSION}/g" *
