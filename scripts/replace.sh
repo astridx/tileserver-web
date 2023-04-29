@@ -17,7 +17,7 @@ l10n_VERSION=$(git -C /srv/tile/sources/osml10n describe --tags)
 
 cd /srv/tile/site/assets
 
-if [ $HOSTNAME == 'vagrant' ]
+if [ $HOSTNAME == 'bullseye' ]
 then
 sudo sed -i "s/VITE_HOSTNAME/localhost/g" *
 else
