@@ -24,6 +24,8 @@ let navList = document.getElementById('nav-list');
 const serverFolderList = [
     { server: 'tile', folder: '' },
     { server: 'tile', folder: 'osmhrb' },
+    { server: 'ptolemy', folder: '' },
+    { server: 'ptolemy', folder: 'osmhrb' },
 ];
 
 serverFolderList.map(
@@ -42,17 +44,20 @@ serverFolderList.map(
 );
 
 const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'tile';
-const folder = helper.getGETParameter('folder') !== null ? '/' + helper.getGETParameter('folder') + '/' : '/';
+const folder = helper.getGETParameter('folder') !== '' ? '/' + helper.getGETParameter('folder') + '/' : '/';
 
 const osm = new TileLayer({
     source: new OSM(),
 });
 
 const tileUrl = 'https://' + server + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
+const heading = 'https://' + HOSTNAME + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
+
 sessionStorage.setItem("tileUrl", tileUrl);
 
 document.getElementById('logo').src = imgUrl;
-document.getElementById('header-h1').innerHTML = tileUrl;
+document.getElementById('header-h1').innerHTML = heading;
+document.getElementById('header-p').innerHTML = '(Auswahl: ' + tileUrl + ')';
 
 const defaultStyle = new TileLayer({
     source: new XYZ({
