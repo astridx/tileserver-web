@@ -21051,8 +21051,12 @@ const folder = getGETParameter("folder") !== "" ? "/" + getGETParameter("folder"
 const osm = new TileLayer$1({
   source: new OSM$1()
 });
-const tileUrl = "https://" + server + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
-const heading = "https://" + HOSTNAME + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
+let tileUrl = "something went wrong";
+let heading = "something went wrong";
+{
+  tileUrl = "https://" + server + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
+  heading = "https://" + HOSTNAME + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
+}
 sessionStorage.setItem("tileUrl", tileUrl);
 document.getElementById("logo").src = imgUrl;
 document.getElementById("header-h1").innerHTML = heading;

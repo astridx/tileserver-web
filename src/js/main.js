@@ -50,8 +50,17 @@ const osm = new TileLayer({
     source: new OSM(),
 });
 
-const tileUrl = 'https://' + server + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
-const heading = 'https://' + HOSTNAME + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
+let tileUrl = 'something went wrong';
+let heading = 'something went wrong';
+
+if (HOSTNAME == 'bullseye') {
+    tileUrl = 'https://localhost' + folder + '{z}/{x}/{y}.png';
+    heading = 'https://localhost' + folder + '{z}/{x}/{y}.png';
+} else {
+    /* server is the value selected in the list (array in this code). HOSTNAME is the server from which the tile was fetched (env var).*/
+    tileUrl = 'https://' + server + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
+    heading = 'https://' + HOSTNAME + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
+}
 
 sessionStorage.setItem("tileUrl", tileUrl);
 
