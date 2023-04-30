@@ -21021,12 +21021,9 @@ const imgUrl = "/assets/osm_logo-b6356be0.png";
 const HOSTNAME = "VITE_HOSTNAME";
 const OSML10N_VERSION = "VITE_OSML10N_VERSION";
 const OPENSTREETMAP_CARTO_DE_VERSION = "VITE_OPENSTREETMAP_CARTO_DE_VERSION";
-document.getElementById("main-carto").innerHTML = OSML10N_VERSION;
-document.getElementById("main-local").innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
-document.getElementById("hostname").innerHTML = "Server: " + HOSTNAME;
 const baseUrl = "/";
 let navList = document.getElementById("nav-list");
-const serverFolderList = [
+let serverFolderList = [
   { server: "tile", folder: "" },
   { server: "tile", folder: "osmhrb" },
   { server: "ptolemy", folder: "" },
@@ -21047,20 +21044,19 @@ serverFolderList.map(
   }
 );
 const server = getGETParameter("server") !== null ? getGETParameter("server") : "tile";
-const folder = getGETParameter("folder") !== "" ? "/" + getGETParameter("folder") + "/" : "/";
+const folder = getGETParameter("folder") !== null && getGETParameter("folder") !== "" ? "/" + getGETParameter("folder") + "/" : "/";
 const osm = new TileLayer$1({
   source: new OSM$1()
 });
-let tileUrl = "something went wrong";
-let heading = "something went wrong";
-{
-  tileUrl = "https://" + server + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
-  heading = "https://" + HOSTNAME + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
-}
+let tileUrl = "https://" + server + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
+let heading = "https://" + HOSTNAME + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
 sessionStorage.setItem("tileUrl", tileUrl);
 document.getElementById("logo").src = imgUrl;
 document.getElementById("header-h1").innerHTML = heading;
 document.getElementById("header-p").innerHTML = "(Auswahl: " + tileUrl + ")";
+document.getElementById("main-carto").innerHTML = OSML10N_VERSION;
+document.getElementById("main-local").innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+document.getElementById("hostname").innerHTML = "Server: " + HOSTNAME + ", Folder: " + folder;
 const defaultStyle = new TileLayer$1({
   source: new XYZ$1({
     attributions: [

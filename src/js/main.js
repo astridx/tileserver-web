@@ -14,10 +14,6 @@ const HOSTNAME = import.meta.env.VITE_HOSTNAME || 'dummy';
 const OSML10N_VERSION = import.meta.env.VITE_OSML10N_VERSION || '1.0';
 const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_DE_VERSION || '1.0';
 
-document.getElementById('main-carto').innerHTML = OSML10N_VERSION;
-document.getElementById('main-local').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
-document.getElementById('hostname').innerHTML = 'Server: ' + HOSTNAME;
-
 const baseUrl = import.meta.env.BASE_URL;
 let navList = document.getElementById('nav-list');
 
@@ -51,7 +47,8 @@ serverFolderList.map(
 );
 
 const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'tile';
-const folder = helper.getGETParameter('folder') !== '' ? '/' + helper.getGETParameter('folder') + '/' : '/';
+const folder = helper.getGETParameter('folder') !== null && helper.getGETParameter('folder') !== ''  ? '/' + helper.getGETParameter('folder') + '/' : '/';
+
 
 const osm = new TileLayer({
     source: new OSM(),
@@ -70,6 +67,10 @@ sessionStorage.setItem("tileUrl", tileUrl);
 document.getElementById('logo').src = imgUrl;
 document.getElementById('header-h1').innerHTML = heading;
 document.getElementById('header-p').innerHTML = '(Auswahl: ' + tileUrl + ')';
+
+document.getElementById('main-carto').innerHTML = OSML10N_VERSION;
+document.getElementById('main-local').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+document.getElementById('hostname').innerHTML = 'Server: ' + HOSTNAME + ', Folder: ' + folder;
 
 const defaultStyle = new TileLayer({
     source: new XYZ({
