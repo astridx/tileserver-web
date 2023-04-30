@@ -21022,14 +21022,15 @@ const HOSTNAME = "VITE_HOSTNAME";
 const OSML10N_VERSION = "VITE_OSML10N_VERSION";
 const OPENSTREETMAP_CARTO_DE_VERSION = "VITE_OPENSTREETMAP_CARTO_DE_VERSION";
 const baseUrl = "/";
-let navList = document.getElementById("nav-list");
-const serverFolderList = [
+let navListprod = document.getElementById("nav-list-prod");
+let navListvagrant = document.getElementById("nav-list-vagrant");
+const serverFolderListprod = [
   { server: "tile", folder: "" },
   { server: "tile", folder: "osmhrb" },
   { server: "ptolemy", folder: "" },
   { server: "ptolemy", folder: "osmhrb" }
 ];
-serverFolderList.map(
+serverFolderListprod.map(
   function({ server: server2, folder: folder2 }) {
     let listelement = document.createElement("li");
     let linkelement = document.createElement("a");
@@ -21040,10 +21041,28 @@ serverFolderList.map(
       linkelement.innerHTML = "Subdomain: " + server2 + "</br> Unterverzeichnis: " + folder2;
     }
     listelement.appendChild(linkelement);
-    navList.appendChild(listelement);
+    navListprod.appendChild(listelement);
   }
 );
-const server = getGETParameter("server") !== null ? getGETParameter("server") : "tile";
+const serverFolderListvagrant = [
+  { server: "localhost", folder: "" },
+  { server: "localhost", folder: "osmhrb" }
+];
+serverFolderListvagrant.map(
+  function({ server: server2, folder: folder2 }) {
+    let listelement = document.createElement("li");
+    let linkelement = document.createElement("a");
+    linkelement.href = baseUrl + "index.html?server=" + server2 + "&folder=" + folder2;
+    if (folder2 == "") {
+      linkelement.innerHTML = "Subdomain: " + server2;
+    } else {
+      linkelement.innerHTML = "Subdomain: " + server2 + "</br> Unterverzeichnis: " + folder2;
+    }
+    listelement.appendChild(linkelement);
+    navListvagrant.appendChild(listelement);
+  }
+);
+const server = getGETParameter("server") !== null ? getGETParameter("server") : "VITE_HOSTNAME_STANDARD";
 const folder = getGETParameter("folder") !== null && getGETParameter("folder") !== "" ? "/" + getGETParameter("folder") + "/" : "/";
 const osm = new TileLayer$1({
   source: new OSM$1()
