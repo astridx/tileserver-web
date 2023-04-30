@@ -25,3 +25,6 @@ sudo sed -i "s/VITE_HOSTNAME/${HOSTNAME}\.openstreetmap\.de/g" *
 fi
 sudo sed -i "s/VITE_OSML10N_VERSION/${l10n_VERSION}/g" *
 sudo sed -i "s/VITE_OPENSTREETMAP_CARTO_DE_VERSION/${CARTO_VERSION}/g" *
+
+git config --global --unset safe.directory /srv/tile/openstreetmap-carto-de
+git config --global --unset safe.directory /srv/tile/sources/osml10n
