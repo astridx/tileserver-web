@@ -21023,7 +21023,7 @@ const OSML10N_VERSION = "VITE_OSML10N_VERSION";
 const OPENSTREETMAP_CARTO_DE_VERSION = "VITE_OPENSTREETMAP_CARTO_DE_VERSION";
 const baseUrl = "/";
 let navList = document.getElementById("nav-list");
-let serverFolderList = [
+const serverFolderList = [
   { server: "tile", folder: "" },
   { server: "tile", folder: "osmhrb" },
   { server: "ptolemy", folder: "" },
@@ -21048,8 +21048,8 @@ const folder = getGETParameter("folder") !== null && getGETParameter("folder") !
 const osm = new TileLayer$1({
   source: new OSM$1()
 });
-let tileUrl = "https://" + server + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
-let heading = "https://" + HOSTNAME + ".openstreetmap.de" + folder + "{z}/{x}/{y}.png";
+const tileUrl = "https://" + server + folder + "{z}/{x}/{y}.png";
+const heading = "https://" + HOSTNAME + folder + "{z}/{x}/{y}.png";
 sessionStorage.setItem("tileUrl", tileUrl);
 document.getElementById("logo").src = imgUrl;
 document.getElementById("header-h1").innerHTML = heading;

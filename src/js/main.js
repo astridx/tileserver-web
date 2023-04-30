@@ -17,19 +17,12 @@ const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_
 const baseUrl = import.meta.env.BASE_URL;
 let navList = document.getElementById('nav-list');
 
-let serverFolderList = [
+const serverFolderList = [
     { server: 'tile', folder: '' },
     { server: 'tile', folder: 'osmhrb' },
     { server: 'ptolemy', folder: '' },
     { server: 'ptolemy', folder: 'osmhrb' },
 ];
-
-if (HOSTNAME == 'bullseye') {
-    serverFolderList = [
-        { server: 'localhost', folder: '' },
-        { server: 'localhost', folder: 'osmhrb' },
-    ];
-}
 
 serverFolderList.map(
     function ({server, folder}) {
@@ -54,13 +47,8 @@ const osm = new TileLayer({
     source: new OSM(),
 });
 
-let tileUrl = 'https://' + server + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
-let heading = 'https://' + HOSTNAME + '.openstreetmap.de' + folder + '{z}/{x}/{y}.png';
-
-if (HOSTNAME == 'bullseye') {
-    tileUrl = 'https://localhost' + folder + '{z}/{x}/{y}.png';
-    heading = 'https://localhost' + folder + '{z}/{x}/{y}.png';
-} 
+const tileUrl = 'https://' + server + folder + '{z}/{x}/{y}.png';
+const heading = 'https://' + HOSTNAME + folder + '{z}/{x}/{y}.png';
 
 sessionStorage.setItem("tileUrl", tileUrl);
 
