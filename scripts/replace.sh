@@ -26,7 +26,7 @@ cd /srv/tile/site/assets
 
 if [ $HOSTNAME == 'bullseye' ]
 then
-    sudo sed -i "s/VITE_HOSTNAME_STANDARD/localhost:8443/g" *
+    sudo sed -i "s/VITE_HOSTNAME_STANDARD/localhost\:8443/g" *
     sudo sed -i "s/VITE_HOSTNAME/localhost/g" *
     sudo sed -i "s/VITE_STYLE_DISPLAY_PROD/none/g" *
     sudo sed -i "s/VITE_STYLE_DISPLAY_VAGRANT/block/g" *
