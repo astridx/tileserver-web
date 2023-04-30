@@ -21024,6 +21024,8 @@ const OPENSTREETMAP_CARTO_DE_VERSION = "VITE_OPENSTREETMAP_CARTO_DE_VERSION";
 const baseUrl = "/";
 let navListprod = document.getElementById("nav-list-prod");
 let navListvagrant = document.getElementById("nav-list-vagrant");
+navListprod.style.display = "VITE_STYLE_DISPLAY_PROD";
+navListvagrant.style.display = "VITE_STYLE_DISPLAY_VAGRANT";
 const serverFolderListprod = [
   { server: "tile", folder: "" },
   { server: "tile", folder: "osmhrb" },

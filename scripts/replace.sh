@@ -27,9 +27,12 @@ cd /srv/tile/site/assets
 if [ $HOSTNAME == 'bullseye' ]
 then
     sudo sed -i "s/VITE_HOSTNAME/localhost/g" *
-    sudo sed -i "s/nav-list-prod/nav-list-vagrant/g" *
     sudo sed -i "s/VITE_HOSTNAME_STANDARD/localhost/g" *
+    sudo sed -i "s/VITE_STYLE_DISPLAY_PROD/none/g" *
+    sudo sed -i "s/VITE_STYLE_DISPLAY_VAGRANT/block/g" *
 else
     sudo sed -i "s/VITE_HOSTNAME/${HOSTNAME}\.openstreetmap\.de/g" *
     sudo sed -i "s/VITE_HOSTNAME_STANDARD/tile\.openstreetmap\.de/g" *
+    sudo sed -i "s/VITE_STYLE_DISPLAY_PROD/block/g" *
+    sudo sed -i "s/VITE_STYLE_DISPLAY_VAGRANT/none/g" *
 fi

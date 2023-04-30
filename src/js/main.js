@@ -18,6 +18,9 @@ const baseUrl = import.meta.env.BASE_URL;
 let navListprod = document.getElementById('nav-list-prod');
 let navListvagrant = document.getElementById('nav-list-vagrant');
 
+navListprod.style.display = import.meta.env.VITE_STYLE_DISPLAY_PROD;
+navListvagrant.style.display = import.meta.env.VITE_STYLE_DISPLAY_VAGRANT;
+
 const serverFolderListprod = [
     { server: 'tile', folder: '' },
     { server: 'tile', folder: 'osmhrb' },
@@ -39,7 +42,6 @@ serverFolderListprod.map(
         navListprod.appendChild(listelement);
     }
 );
-
 
 const serverFolderListvagrant = [
     { server: 'localhost', folder: '' },
