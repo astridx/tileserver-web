@@ -11,10 +11,6 @@
 CARTO_VERSION=$(sudo -u tile git -C /srv/tile/openstreetmap-carto-de/ describe --tags)
 l10n_VERSION=$(sudo -u tile git -C /srv/tile/sources/osml10n describe --tags)
 
-sed -i "s/VITE_OSML10N_VERSION/${l10n_VERSION}/g" *
-sed -i "s/VITE_OPENSTREETMAP_CARTO_DE_VERSION/${CARTO_VERSION}/g" *
-
-
 cd /srv/tile/site/
 
 if [ $HOSTNAME == 'bullseye' ]
@@ -25,6 +21,9 @@ else
 fi
 
 cd /srv/tile/site/assets
+
+sed -i "s/VITE_OSML10N_VERSION/${l10n_VERSION}/g" *
+sed -i "s/VITE_OPENSTREETMAP_CARTO_DE_VERSION/${CARTO_VERSION}/g" *
 
 if [ $HOSTNAME == 'bullseye' ]
 then
