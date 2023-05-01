@@ -21021,7 +21021,7 @@ const imgUrl = "/assets/osm_logo-b6356be0.png";
 const HOSTNAME = "VITE_HOSTNAME";
 const OSML10N_VERSION = "VITE_OSML10N_VERSION";
 const OPENSTREETMAP_CARTO_DE_VERSION = "VITE_OPENSTREETMAP_CARTO_DE_VERSION";
-const server = getGETParameter("server") !== null ? getGETParameter("server") : "dummy";
+const server = getGETParameter("server") !== null ? getGETParameter("server") : "tile";
 const folder = getGETParameter("folder") !== null && getGETParameter("folder") !== "" ? "/" + getGETParameter("folder") + "/" : "/";
 const osm = new TileLayer$1({
   source: new OSM$1()
@@ -21040,7 +21040,7 @@ const defaultStyle = new TileLayer$1({
     attributions: [
       "| © sobuskutkowacy pola OpenStreetMap. | © OpenStreetMap Mitwirkende."
     ],
-    url: tileUrl,
+    url: heading,
     maxZoom: 20
   })
 });

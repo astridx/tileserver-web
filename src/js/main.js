@@ -23,8 +23,8 @@ const osm = new TileLayer({
     source: new OSM(),
 });
 
-// Server = Lokale Umgebungsvariable - sonst VITE_HOSTNAME_STANDARD; 
-// HOSTNAME = Get-Variable; HOSTNAME = 
+// Server = Get-Variable; 
+// HOSTNAME = Umgebungsvariable 
 const tileUrl = 'https://' + server + folder + '{z}/{x}/{y}.png';
 const heading = 'https://' + HOSTNAME + folder + '{z}/{x}/{y}.png';
 
@@ -43,7 +43,7 @@ const defaultStyle = new TileLayer({
         attributions: [
             '| © sobuskutkowacy pola OpenStreetMap. | © OpenStreetMap Mitwirkende.',
         ],
-        url: tileUrl,
+        url: heading,
         maxZoom: 20,
     }),
 });
