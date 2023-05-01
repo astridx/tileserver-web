@@ -8,8 +8,8 @@
 # are being displayed.
 #
 
-CARTO_VERSION=$(sudo -u tile git -C /srv/tile/openstreetmap-carto-de/ describe --tags)
-l10n_VERSION=$(sudo -u tile git -C /srv/tile/sources/osml10n describe --tags)
+CARTO_VERSION=$(git -C /srv/tile/openstreetmap-carto-de/ describe --tags)
+l10n_VERSION=$(git -C /srv/tile/sources/osml10n describe --tags)
 
 cd /srv/tile/site/
 
