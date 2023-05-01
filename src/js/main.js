@@ -10,67 +10,21 @@ import { getRenderPixel } from 'ol/render';
 import ContextMenu from 'ol-contextmenu';
 import imgUrl from '../images/osm_logo.png'
 
-const HOSTNAME = import.meta.env.VITE_HOSTNAME || import.meta.env.VITE_HOSTNAME_STANDARD;
+const HOSTNAME = import.meta.env.VITE_HOSTNAME || 'dummy';
 const OSML10N_VERSION = import.meta.env.VITE_OSML10N_VERSION || '1.0';
 const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_DE_VERSION || '1.0';
 
 const baseUrl = import.meta.env.BASE_URL;
-let navListprod = document.getElementById('nav-list-prod');
-let navListvagrant = document.getElementById('nav-list-vagrant');
 
-navListprod.style.display = import.meta.env.VITE_STYLE_DISPLAY_PROD;
-navListvagrant.style.display = import.meta.env.VITE_STYLE_DISPLAY_VAGRANT;
-
-const serverFolderListprod = [
-    { server: 'tile', folder: '' },
-    { server: 'tile', folder: 'osmhrb' },
-    { server: 'ptolemy', folder: '' },
-    { server: 'ptolemy', folder: 'osmhrb' },
-];
-
-serverFolderListprod.map(
-    function ({server, folder}) {
-        let listelement = document.createElement("li");
-        let linkelement = document.createElement("a");
-        linkelement.href = baseUrl + 'index.html?server=' + server + '&folder=' + folder;
-        if (folder == '') {
-            linkelement.innerHTML = 'Subdomain: ' + server;
-        }else {
-            linkelement.innerHTML = 'Subdomain: ' + server + '</br> Unterverzeichnis: ' + folder;            
-        }
-        listelement.appendChild(linkelement);
-        navListprod.appendChild(listelement);
-    }
-);
-
-const serverFolderListvagrant = [
-    { server: 'localhost', folder: '' },
-    { server: 'localhost', folder: 'osmhrb' },
-];
-
-serverFolderListvagrant.map(
-    function ({server, folder}) {
-        let listelement = document.createElement("li");
-        let linkelement = document.createElement("a");
-        linkelement.href = baseUrl + 'index.html?server=' + server + '&folder=' + folder;
-        if (folder == '') {
-            linkelement.innerHTML = 'Subdomain: ' + server;
-        }else {
-            linkelement.innerHTML = 'Subdomain: ' + server + '</br> Unterverzeichnis: ' + folder;            
-        }
-        listelement.appendChild(linkelement);
-        navListvagrant.appendChild(listelement);
-    }
-);
-
-const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : import.meta.env.VITE_HOSTNAME_STANDARD;
+const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'dummy';
 const folder = helper.getGETParameter('folder') !== null && helper.getGETParameter('folder') !== ''  ? '/' + helper.getGETParameter('folder') + '/' : '/';
-
 
 const osm = new TileLayer({
     source: new OSM(),
 });
 
+// Server = Lokale Umgebungsvariable - sonst VITE_HOSTNAME_STANDARD; 
+// HOSTNAME = Get-Variable; HOSTNAME = 
 const tileUrl = 'https://' + server + folder + '{z}/{x}/{y}.png';
 const heading = 'https://' + HOSTNAME + folder + '{z}/{x}/{y}.png';
 
