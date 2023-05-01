@@ -10,13 +10,13 @@ import { getRenderPixel } from 'ol/render';
 import ContextMenu from 'ol-contextmenu';
 import imgUrl from '../images/osm_logo.png'
 
-const HOSTNAME = import.meta.env.VITE_HOSTNAME || 'dummy';
+const HOSTNAME = import.meta.env.VITE_HOSTNAME || 'tile';
 const OSML10N_VERSION = import.meta.env.VITE_OSML10N_VERSION || '1.0';
 const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_DE_VERSION || '1.0';
 
 const baseUrl = import.meta.env.BASE_URL;
 
-const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'dummy';
+const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'tile';
 const folder = helper.getGETParameter('folder') !== null && helper.getGETParameter('folder') !== ''  ? '/' + helper.getGETParameter('folder') + '/' : '/';
 
 const osm = new TileLayer({
