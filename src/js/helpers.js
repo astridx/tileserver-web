@@ -24,7 +24,7 @@ export function lat2tile(lat, zoom) {
 export function open_tile_cb(obj) {
     let image = gent_tile_url('', sessionStorage.getItem('zoomlevel'), obj.coordinate);
     let infotext = gent_tile_url('status', sessionStorage.getItem('zoomlevel'), obj.coordinate);
-    document.getElementById('modal-title-id').innerHTML = 'URL ' + sessionStorage.getItem('tileUrl');
+    document.getElementById('modal-title-id').innerHTML = 'URL ' + sessionStorage.getItem('serverUrl');
     document.getElementById('modal-body-id-image').innerHTML = '<img src="' + image + '">';
     do_fetch(infotext);
 
@@ -49,7 +49,7 @@ export function open_tile_cb(obj) {
 };
 
 function gent_tile_url(suffix, zoom, coordinate) {
-    let url = sessionStorage.getItem('tileUrl');
+    let url = sessionStorage.getItem('serverUrl');
 
     let lonlat = transform(coordinate, 'EPSG:3857', 'EPSG:4326')
 
@@ -70,7 +70,7 @@ function gent_tile_url(suffix, zoom, coordinate) {
 
 
 var do_after_fetch = function (data, url) {
-    document.getElementById('modal-body-id-infotext').innerHTML = url + ': ' + data;
+    document.getElementById('modal-body-id-infotext').innerHTML = url + ': ' + data + '<hr>Aufruf: ' + sessionStorage.getItem('getUrl');
     bootstrapModal.show();
 }
 

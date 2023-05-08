@@ -25,16 +25,17 @@ const osm = new TileLayer({
 
 // Server = Get-Variable; 
 // HOSTNAME = Umgebungsvariable 
-const tileUrl = 'https://' + server + folder + '{z}/{x}/{y}.png';
-const heading = 'https://' + HOSTNAME + folder + '{z}/{x}/{y}.png';
+const getUrl = 'https://' + server + folder + '{z}/{x}/{y}.png';
+const serverUrl = 'https://' + HOSTNAME + folder + '{z}/{x}/{y}.png';
 
-sessionStorage.setItem("tileUrl", tileUrl);
+sessionStorage.setItem("getUrl", getUrl);
+sessionStorage.setItem("serverUrl", serverUrl);
 
 document.getElementById('logo').src = imgUrl;
-document.getElementById('header-h1').innerHTML = heading;
+document.getElementById('header-h1').innerHTML = serverUrl;
 
-document.getElementById('main-carto').innerHTML = OSML10N_VERSION;
-document.getElementById('main-local').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+document.getElementById('main-carto').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+document.getElementById('main-local').innerHTML = OSML10N_VERSION;
 document.getElementById('hostname').innerHTML = 'Server: ' + HOSTNAME + ', Folder: ' + folder;
 
 const defaultStyle = new TileLayer({
@@ -42,7 +43,7 @@ const defaultStyle = new TileLayer({
         attributions: [
             '| © sobuskutkowacy pola OpenStreetMap. | © OpenStreetMap Mitwirkende.',
         ],
-        url: heading,
+        url: serverUrl,
         maxZoom: 20,
     }),
 });

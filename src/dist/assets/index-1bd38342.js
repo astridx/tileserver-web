@@ -6128,7 +6128,7 @@ function lat2tile(lat, zoom) {
 function open_tile_cb(obj) {
   let image = gent_tile_url("", sessionStorage.getItem("zoomlevel"), obj.coordinate);
   let infotext = gent_tile_url("status", sessionStorage.getItem("zoomlevel"), obj.coordinate);
-  document.getElementById("modal-title-id").innerHTML = "URL " + sessionStorage.getItem("tileUrl");
+  document.getElementById("modal-title-id").innerHTML = "URL " + sessionStorage.getItem("serverUrl");
   document.getElementById("modal-body-id-image").innerHTML = '<img src="' + image + '">';
   do_fetch(infotext);
   let btn_dirty_status = document.createElement("button");
@@ -6149,7 +6149,7 @@ function open_tile_cb(obj) {
   bootstrapModal.show();
 }
 function gent_tile_url(suffix, zoom, coordinate) {
-  let url = sessionStorage.getItem("tileUrl");
+  let url = sessionStorage.getItem("serverUrl");
   let lonlat = transform(coordinate, "EPSG:3857", "EPSG:4326");
   zoom = sessionStorage.getItem("zoomlevel");
   let x2 = long2tile(lonlat[0], zoom);
@@ -6163,7 +6163,7 @@ function gent_tile_url(suffix, zoom, coordinate) {
   return url;
 }
 var do_after_fetch = function(data, url) {
-  document.getElementById("modal-body-id-infotext").innerHTML = url + ": " + data;
+  document.getElementById("modal-body-id-infotext").innerHTML = url + ": " + data + "<hr>Aufruf: " + sessionStorage.getItem("getUrl");
   bootstrapModal.show();
 };
 var do_fetch = function(url) {
@@ -18819,11 +18819,11 @@ class TileImage extends UrlTile$1 {
       tileCoord,
       projection
     );
-    const tileUrl2 = urlTileCoord ? this.tileUrlFunction(urlTileCoord, pixelRatio, projection) : void 0;
+    const tileUrl = urlTileCoord ? this.tileUrlFunction(urlTileCoord, pixelRatio, projection) : void 0;
     const tile = new this.tileClass(
       tileCoord,
-      tileUrl2 !== void 0 ? TileState.IDLE : TileState.EMPTY,
-      tileUrl2 !== void 0 ? tileUrl2 : "",
+      tileUrl !== void 0 ? TileState.IDLE : TileState.EMPTY,
+      tileUrl !== void 0 ? tileUrl : "",
       this.crossOrigin,
       this.tileLoadFunction,
       this.tileOptions
@@ -21026,20 +21026,21 @@ const folder = getGETParameter("folder") !== null && getGETParameter("folder") !
 const osm = new TileLayer$1({
   source: new OSM$1()
 });
-const tileUrl = "https://" + server + folder + "{z}/{x}/{y}.png";
-const heading = "https://" + HOSTNAME + folder + "{z}/{x}/{y}.png";
-sessionStorage.setItem("tileUrl", tileUrl);
+const getUrl = "https://" + server + folder + "{z}/{x}/{y}.png";
+const serverUrl = "https://" + HOSTNAME + folder + "{z}/{x}/{y}.png";
+sessionStorage.setItem("getUrl", getUrl);
+sessionStorage.setItem("serverUrl", serverUrl);
 document.getElementById("logo").src = imgUrl;
-document.getElementById("header-h1").innerHTML = heading;
-document.getElementById("main-carto").innerHTML = OSML10N_VERSION;
-document.getElementById("main-local").innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+document.getElementById("header-h1").innerHTML = serverUrl;
+document.getElementById("main-carto").innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
+document.getElementById("main-local").innerHTML = OSML10N_VERSION;
 document.getElementById("hostname").innerHTML = "Server: " + HOSTNAME + ", Folder: " + folder;
 const defaultStyle = new TileLayer$1({
   source: new XYZ$1({
     attributions: [
       "| © sobuskutkowacy pola OpenStreetMap. | © OpenStreetMap Mitwirkende."
     ],
-    url: heading,
+    url: serverUrl,
     maxZoom: 20
   })
 });
