@@ -16,7 +16,7 @@ const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_
 
 const baseUrl = import.meta.env.BASE_URL;
 
-const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'tile';
+const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'tile.openstreetmap.de';
 const folder = helper.getGETParameter('folder') !== null && helper.getGETParameter('folder') !== ''  ? '/' + helper.getGETParameter('folder') + '/' : '/';
 
 const osm = new TileLayer({
