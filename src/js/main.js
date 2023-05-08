@@ -32,7 +32,6 @@ sessionStorage.setItem("tileUrl", tileUrl);
 
 document.getElementById('logo').src = imgUrl;
 document.getElementById('header-h1').innerHTML = heading;
-document.getElementById('header-p').innerHTML = '(Auswahl: ' + tileUrl + ')';
 
 document.getElementById('main-carto').innerHTML = OSML10N_VERSION;
 document.getElementById('main-local').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
