@@ -6128,7 +6128,7 @@ function lat2tile(lat, zoom) {
 function open_tile_cb(obj) {
   let image = gent_tile_url("", sessionStorage.getItem("zoomlevel"), obj.coordinate);
   let infotext = gent_tile_url("status", sessionStorage.getItem("zoomlevel"), obj.coordinate);
-  document.getElementById("modal-title-id").innerHTML = "URL " + sessionStorage.getItem("tileUrl");
+  document.getElementById("modal-title-id").innerHTML = "Server: " + sessionStorage.getItem("hostname") + " | Folder: " + sessionStorage.getItem("folder");
   document.getElementById("modal-body-id-image").innerHTML = '<img src="' + image + '">';
   do_fetch(infotext);
   let btn_dirty_status = document.createElement("button");
@@ -21027,6 +21027,8 @@ const osm = new TileLayer$1({
 });
 const tileUrl = folder + "{z}/{x}/{y}.png";
 sessionStorage.setItem("tileUrl", tileUrl);
+sessionStorage.setItem("hostname", HOSTNAME);
+sessionStorage.setItem("folder", folder);
 document.getElementById("logo").src = imgUrl;
 document.getElementById("header-h1").innerHTML = "Server: " + HOSTNAME + ", Folder: " + folder;
 document.getElementById("main-carto").innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;

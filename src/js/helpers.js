@@ -24,7 +24,7 @@ export function lat2tile(lat, zoom) {
 export function open_tile_cb(obj) {
     let image = gent_tile_url('', sessionStorage.getItem('zoomlevel'), obj.coordinate);
     let infotext = gent_tile_url('status', sessionStorage.getItem('zoomlevel'), obj.coordinate);
-    document.getElementById('modal-title-id').innerHTML = 'URL ' + sessionStorage.getItem('tileUrl');
+    document.getElementById('modal-title-id').innerHTML = 'Server: ' + sessionStorage.getItem('hostname') + ' | Folder: ' + sessionStorage.getItem('folder');
     document.getElementById('modal-body-id-image').innerHTML = '<img src="' + image + '">';
     do_fetch(infotext);
 
