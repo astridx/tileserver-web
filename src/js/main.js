@@ -25,11 +25,10 @@ const tileUrl = folder + '{z}/{x}/{y}.png';
 sessionStorage.setItem("tileUrl", tileUrl);
 
 document.getElementById('logo').src = imgUrl;
-document.getElementById('header-h1').innerHTML = tileUrl;
+document.getElementById('header-h1').innerHTML = 'Server: ' + HOSTNAME + ', Folder: ' + folder;
 
 document.getElementById('main-carto').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
 document.getElementById('main-local').innerHTML = OSML10N_VERSION;
-document.getElementById('hostname').innerHTML = 'Server: ' + HOSTNAME + ', Folder: ' + folder;
 
 const defaultStyle = new TileLayer({
     source: new XYZ({
