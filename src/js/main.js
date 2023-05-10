@@ -14,25 +14,18 @@ const HOSTNAME = import.meta.env.VITE_HOSTNAME || 'tile';
 const OSML10N_VERSION = import.meta.env.VITE_OSML10N_VERSION || '1.0';
 const OPENSTREETMAP_CARTO_DE_VERSION = import.meta.env.VITE_OPENSTREETMAP_CARTO_DE_VERSION || '1.0';
 
-const baseUrl = import.meta.env.BASE_URL;
-
-const server = helper.getGETParameter('server') !== null ? helper.getGETParameter('server') : 'tile.openstreetmap.de';
 const folder = helper.getGETParameter('folder') !== null && helper.getGETParameter('folder') !== ''  ? '/' + helper.getGETParameter('folder') + '/' : '/';
 
 const osm = new TileLayer({
     source: new OSM(),
 });
 
-// Server = Get-Variable; 
-// HOSTNAME = Umgebungsvariable 
-const getUrl = 'https://' + server + folder + '{z}/{x}/{y}.png';
-const serverUrl = 'https://' + HOSTNAME + folder + '{z}/{x}/{y}.png';
+const tileUrl = folder + '{z}/{x}/{y}.png';
 
-sessionStorage.setItem("getUrl", getUrl);
-sessionStorage.setItem("serverUrl", serverUrl);
+sessionStorage.setItem("tileUrl", tileUrl);
 
 document.getElementById('logo').src = imgUrl;
-document.getElementById('header-h1').innerHTML = serverUrl;
+document.getElementById('header-h1').innerHTML = tileUrl;
 
 document.getElementById('main-carto').innerHTML = OPENSTREETMAP_CARTO_DE_VERSION;
 document.getElementById('main-local').innerHTML = OSML10N_VERSION;
@@ -43,7 +36,7 @@ const defaultStyle = new TileLayer({
         attributions: [
             '| © sobuskutkowacy pola OpenStreetMap. | © OpenStreetMap Mitwirkende.',
         ],
-        url: serverUrl,
+        url: tileUrl,
         maxZoom: 20,
     }),
 });
