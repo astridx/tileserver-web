@@ -6,8 +6,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "build-local": "vite build --base=/astridx.github.io/tileserver-web/",
-    "build-astridx": "vite build --base=/tileserver-web/",
+    "build-for-demo": "vite build --base=/astridx.github.io/tileserver-web/",
     "serve": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sass": "^1.62.0",
-    "vite": "^4.3.1"
+    "sass": "^1.62.1",
+    "vite": "^4.3.5"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.7",
