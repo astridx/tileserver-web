@@ -42,7 +42,11 @@ export function open_tile_cb(obj) {
             do_fetch(infotext);
         }
     });
-    document.getElementById('modal-footer').appendChild(btn_dirty_status);
+    if (document.getElementById('modal-footer').innerHTML.indexOf("Kachel") != -1) {
+        // element is there 
+    } else {
+        document.getElementById('modal-footer').appendChild(btn_dirty_status);
+    }
 
     bootstrapModal.show();
 };

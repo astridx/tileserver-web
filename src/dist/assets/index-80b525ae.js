@@ -6145,7 +6145,11 @@ function open_tile_cb(obj) {
       do_fetch(infotext);
     }
   });
-  document.getElementById("modal-footer").appendChild(btn_dirty_status);
+  if (document.getElementById("modal-footer").innerHTML.indexOf("Kachel") != -1)
+    ;
+  else {
+    document.getElementById("modal-footer").appendChild(btn_dirty_status);
+  }
   bootstrapModal.show();
 }
 function gent_tile_url(suffix, zoom, coordinate) {
