@@ -28,7 +28,6 @@ export function open_tile_cb(obj) {
     document.getElementById('modal-body-id-image').innerHTML = '<img src="' + image + '">';
     do_fetch(infotext);
 
-
     let btn_dirty_status = document.createElement("button");
     btn_dirty_status.classList.add("btn-primary");
     btn_dirty_status.classList.add("btn");
@@ -49,7 +48,7 @@ export function open_tile_cb(obj) {
 };
 
 function gent_tile_url(suffix, zoom, coordinate) {
-    let url = sessionStorage.getItem('tileUrl');
+    let url = 'http://' + sessionStorage.getItem('hostname') + sessionStorage.getItem('folder') + sessionStorage.getItem('tileUrl');
 
     let lonlat = transform(coordinate, 'EPSG:3857', 'EPSG:4326')
 
